@@ -268,184 +268,134 @@ const Dashboard = () => {
 
       {/* Main Content */}
       <main className="container mx-auto px-4 py-8">
-      
-      {problemStatements.length === 0 ? (
-        <div className="text-center py-12">
-          <div className="mx-auto w-24 h-24 text-blue-400 mb-4">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
+        {problemStatements.length === 0 ? (
+          <div className="text-center py-12">
+            <div className="mx-auto w-24 h-24 text-blue-400 mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <h3 className="text-lg font-medium text-gray-700">No problem statements found</h3>
+            <p className="mt-2 text-gray-500">Check back later or try adjusting your filters</p>
           </div>
-          <h3 className="text-lg font-medium text-gray-700">No problem statements found</h3>
-          <p className="mt-2 text-gray-500">Check back later or try adjusting your filters</p>
-        </div>
-      ) : (
-        <div className="space-y-6">
+        ) : (
+          <div className="space-y-6">
           {/* Filters */}
           <div className="bg-white p-6 rounded-xl shadow-md mb-8 border border-gray-100">
             <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
-              <h2 className="text-xl font-semibold text-gray-800">Filter Statements</h2>
-              <div className="flex space-x-2 mt-2 md:mt-0">
-                <button 
-                  onClick={applyFilters}
-                  className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center"
-                >
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-1" viewBox="0 0 20 20" fill="currentColor">
-                    <path fillRule="evenodd" d="M3 3a1 1 0 011-1h12a1 1 0 011 1v3a1 1 0 01-.293.707L12 11.414V15a1 1 0 01-.293.707l-2 2A1 1 0 018 17v-5.586L3.293 7.707A1 1 0 013 7V3z" clipRule="evenodd" />
-                  </svg>
-                  Apply Filters
-                </button>
-                <button 
-                  onClick={resetFilters}
-                  className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
-                >
-                  Reset
-                </button>
-              </div>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Category</label>
-                <div className="space-y-1">
-                  <label className="block text-sm font-medium text-gray-700">Category</label>
-                  <div className="relative">
-                        <select 
-                      name="category"
-                      value={filters.category}
-                      onChange={handleFilterChange}
-                      className="w-full pl-3 pr-10 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 appearance-none bg-white"
+              <div className="w-full">
+                <h2 className="text-xl font-semibold text-gray-800 mb-4">Filter Problem Statements</h2>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Category</label>
+                    <div className="relative">
+                      <select 
+                        name="category"
+                        value={filters.category}
+                        onChange={handleFilterChange}
+                        className="w-full pl-3 pr-10 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 appearance-none bg-white"
+                      >
+                        <option value="">All Categories</option>
+                        <option value="Hardware">Hardware</option>
+                        <option value="Software">Software</option>
+                      </select>
+                      <svg className="absolute right-2 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-500 pointer-events-none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                        <path fillRule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clipRule="evenodd" />
+                      </svg>
+                    </div>
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Theme</label>
+                    <div className="relative">
+                      <select 
+                        name="theme"
+                        value={filters.theme}
+                        onChange={handleFilterChange}
+                        className="w-full pl-3 pr-10 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 appearance-none bg-white"
+                      >
+                        <option value="">All Themes</option>
+                        {Array.from(new Set(problemStatements.map(ps => ps.theme))).map((theme, i) => (
+                          <option key={i} value={theme}>{theme}</option>
+                        ))}
+                      </select>
+                      <svg className="absolute right-2 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-500 pointer-events-none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                        <path fillRule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clipRule="evenodd" />
+                      </svg>
+                    </div>
+                  </div>
+                  <div className="flex items-end space-x-2">
+                    <button 
+                      onClick={applyFilters}
+                      className="flex-1 bg-blue-600 text-white py-2.5 px-4 rounded-md hover:bg-blue-700 transition-colors flex items-center justify-center"
                     >
-                      <option value="">All Categories</option>
-                      <option value="Hardware">Hardware</option>
-                      <option value="Software">Software</option>
-                    </select>
-              </div>
-              <div>
-                <div className="space-y-1">
-                  <label className="block text-sm font-medium text-gray-700">Theme</label>
-                  <div className="relative">
-                    <select 
-                      name="theme"
-                      value={filters.theme}
-                      onChange={handleFilterChange}
-                      className="w-full pl-3 pr-10 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 appearance-none bg-white"
+                      <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
+                      </svg>
+                      Apply Filters
+                    </button>
+                    <button 
+                      onClick={resetFilters}
+                      className="flex-1 bg-gray-200 text-gray-700 py-2.5 px-4 rounded-md hover:bg-gray-300 transition-colors flex items-center justify-center"
                     >
-                      <option value="">All Themes</option>
-                      {Array.from(new Set(problemStatements.map(ps => ps.theme))).map((theme, i) => (
-                        <option key={i} value={theme}>{theme}</option>
-                      ))}
-                    </select>
+                      <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                      </svg>
+                      Reset
+                    </button>
                   </div>
                 </div>
               </div>
-              </div>
-              <div className="flex items-end space-x-2 mt-6">
-                <button 
-                  onClick={applyFilters}
-                  className="w-1/2 bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition-colors"
-                >
-                  Apply Filters
-                </button>
-                <button 
-                  onClick={resetFilters}
-                  className="w-1/2 bg-gray-200 text-gray-700 py-2 px-4 rounded-md hover:bg-gray-300 transition-colors"
-                >
-                  Reset
-                </button>
-              </div>
             </div>
           </div>
-          </div>
-          {/* Problem Statements - Horizontal Scroll */}
+
+          {/* Problem Statements Grid */}
           <div className="mb-8">
             <div className="flex justify-between items-center mb-6">
               <h2 className="text-xl font-semibold text-gray-800">
                 {filteredStatements.length} {filteredStatements.length === 1 ? 'Problem' : 'Problems'} Found
               </h2>
-              <div className="flex items-center space-x-2">
-                <div className="text-sm text-gray-500">
-                  Scroll horizontally to view all problems
-                </div>
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
-                  <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
-                </svg>
-              </div>
             </div>
 
-            {filteredStatements.length === 0 ? (
-              <div className="bg-white rounded-xl shadow-sm p-8 text-center border border-gray-100">
-                <div className="mx-auto w-16 h-16 text-gray-300 mb-4">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                </div>
-                <h3 className="text-lg font-medium text-gray-700 mb-2">No matching problem statements</h3>
-                <p className="text-gray-500 mb-4">Try adjusting your search or filter to find what you're looking for.</p>
-                <button 
-                  onClick={resetFilters}
-                  className="px-4 py-2 bg-blue-50 text-blue-600 rounded-lg hover:bg-blue-100 transition-colors"
-                >
-                  Clear all filters
-                </button>
-              </div>
-            ) : (
-              <div className="w-full overflow-x-auto pb-6">
-                <div className="flex flex-wrap gap-4">
-                  {filteredStatements.map((statement) => (
-                    <div 
-                      key={statement['ps-id'] || statement.id} 
-                      className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden transition-all duration-300 w-full md:w-72 flex flex-col hover:shadow-md"
-                      style={{ height: '320px' }}
-                    >
-                      <div className="p-4 flex-1 flex flex-col">
-                        <div className="flex justify-between items-start mb-3">
-                          <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-blue-50 text-blue-800">
-                            {statement.ps_id || statement['ps-id'] || 'ID: N/A'}
-                          </span>
-                          <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-50 text-green-800 max-w-[100px] truncate" title={statement.category || 'Category'}>
-                            {statement.category || 'Category'}
-                          </span>
-                        </div>
-                        
-                        <h3 className="font-medium text-gray-900 line-clamp-2 mb-2">
-                          {statement.title || 'Untitled Problem Statement'}
-                        </h3>
-                        <p className="text-sm text-gray-500 line-clamp-3 mb-3">
-                          {statement.description || (statement.background ? statement.background.substring(0, 150) + (statement.background.length > 150 ? '...' : '') : 'No description available')}
-                        </p>
-                        
-                        <div className="mt-4 space-y-2 text-sm">
-                          {statement.theme && (
-  <div className="flex items-center">
-                              <svg className="h-4 w-4 text-gray-400 mr-1.5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
-                                <path fillRule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10a1 1 0 01-1.64 0l-7-10A1 1 0 012 7h5.5l1.8-5.954a1 1 0 011.8 0z" clipRule="evenodd" />
-                              </svg>
-                              <span className="text-gray-600">{statement.theme}</span>
-                            </div>
-                          )}
-                        </div>
-                        <div className="mt-1.5">
-                          <button 
-                            className="w-full flex items-center justify-center px-2 py-1 border border-transparent text-xs font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-1 focus:ring-offset-1 focus:ring-blue-500"
-                            onClick={() => handleViewDetails(statement)}
-                          >
-                            View Details
-                            <svg className="ml-1 -mr-1 h-3 w-3" 
-                                 xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                              <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
-                            </svg>
-                          </button>
-                        </div>
-                      </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {filteredStatements.map((statement) => (
+                <div key={statement.id} className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
+                  <div className="p-6">
+                    <div className="flex justify-between items-start mb-4">
+                      <h3 className="text-lg font-semibold text-gray-800">{statement.ps_id || 'PS-' + statement.id}</h3>
+                      <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                        {statement.category || 'General'}
+                      </span>
                     </div>
-                  ))}
+                    <h4 className="text-lg font-medium text-gray-900 mb-2">{statement.title || 'Untitled Problem'}</h4>
+                    <p className="text-gray-600 mb-4 line-clamp-3">
+                      {statement.description || 'No description available.'}
+                    </p>
+                    <div className="flex items-center justify-between mt-4">
+                      <div className="flex items-center">
+                        <svg className="h-4 w-4 text-gray-400 mr-1.5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
+                          <path fillRule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10a1 1 0 01-1.64 0l-7-10A1 1 0 012 7h5.5l1.8-5.954a1 1 0 011.8 0z" clipRule="evenodd" />
+                        </svg>
+                        <span className="text-gray-600">{statement.theme || 'General'}</span>
+                      </div>
+                      <button 
+                        className="flex items-center justify-center px-3 py-1.5 border border-transparent text-xs font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-1 focus:ring-offset-1 focus:ring-blue-500"
+                        onClick={() => handleViewDetails(statement)}
+                      >
+                        View Details
+                        <svg className="ml-1 h-3 w-3" 
+                             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                          <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            )}
+              ))}
+            </div>
           </div>
         </div>
       )}
-      </main>
+    </main>
     </div>
   );
 }

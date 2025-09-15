@@ -1,26 +1,9 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
 
 const Schedule = () => {
-  const navigate = useNavigate();
-  
-  // Check if user is logged in (you might want to use your auth context instead)
-  const isAuthenticated = !!localStorage.getItem('user');
-
-  useEffect(() => {
-    if (!isAuthenticated) {
-      // Optionally show a message or redirect to login
-      // navigate('/login', { state: { from: '/schedule' } });
-    }
-  }, [isAuthenticated, navigate]);
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-900 to-gray-800 py-6 sm:py-12 px-3 sm:px-6 lg:px-8">
-      {!isAuthenticated && (
-        <div className="max-w-7xl mx-auto mb-6 p-4 bg-yellow-500/20 border-l-4 border-yellow-500 text-yellow-100">
-          <p>Please log in to view the full schedule details.</p>
-        </div>
-      )}
       <div className="max-w-7xl mx-auto">
         <div className="flex items-center justify-between mb-6 sm:mb-8">
           <button
