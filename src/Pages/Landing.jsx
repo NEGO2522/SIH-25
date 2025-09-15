@@ -59,7 +59,7 @@ const Landing = ({ user }) => {
   };
 
   const handleProblemStatementsClick = () => {
-    handleProtectedNavigation('/problem-statements');
+    handleProtectedNavigation('/dashboard');
   };
 
   const handlePrizesClick = () => {

@@ -10,7 +10,6 @@ const Dashboard = () => {
   const [error, setError] = useState(null);
   const [filters, setFilters] = useState({
     category: '',
-    department: '',
     theme: ''
   });
   const [selectedCard, setSelectedCard] = useState(null);
@@ -43,22 +42,28 @@ const Dashboard = () => {
               // If data is an array
               if (Array.isArray(data)) {
                 data.forEach((statement, index) => {
-                  statementsArray.push({
+                  const formattedStatement = {
                     id: statement.id || `item-${index}`,
                     ps_id: statement.ps_id || statement['ps-id'] || `ps-${index + 1}`,
-                    ...statement
-                  });
+                    ...statement,
+                    // If description is missing but background exists, use background as description
+                    description: statement.description || statement.background || ''
+                  };
+                  statementsArray.push(formattedStatement);
                 });
               } 
               // If data is an object with keys
               else if (typeof data === 'object') {
                 Object.entries(data).forEach(([key, statement], index) => {
                   if (statement) {
-                    statementsArray.push({
+                    const formattedStatement = {
                       id: statement.id || key,
                       ps_id: statement.ps_id || statement['ps-id'] || `ps-${key}`,
-                      ...statement
-                    });
+                      ...statement,
+                      // If description is missing but background exists, use background as description
+                      description: statement.description || statement.background || ''
+                    };
+                    statementsArray.push(formattedStatement);
                   }
                 });
               }
@@ -115,7 +120,6 @@ const Dashboard = () => {
     const filtered = problemStatements.filter(statement => {
       return (
         (filters.category === '' || statement.category === filters.category) &&
-        (filters.department === '' || statement.department === filters.department) &&
         (filters.theme === '' || statement.theme === filters.theme)
       );
     });
@@ -125,7 +129,6 @@ const Dashboard = () => {
   const resetFilters = () => {
     setFilters({
       category: '',
-      department: '',
       theme: ''
     });
     setFilteredStatements(problemStatements);
@@ -319,24 +322,6 @@ const Dashboard = () => {
               </div>
               <div>
                 <div className="space-y-1">
-                  <label className="block text-sm font-medium text-gray-700">Department</label>
-                  <div className="relative">
-                    <select 
-                      name="department"
-                      value={filters.department}
-                      onChange={handleFilterChange}
-                      className="w-full pl-3 pr-10 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 appearance-none bg-white"
-                    >
-                      <option value="">All Departments</option>
-                      {Array.from(new Set(problemStatements.map(ps => ps.department))).map((dept, i) => (
-                        <option key={i} value={dept}>{dept}</option>
-                      ))}
-                    </select>
-                  </div>
-                </div>
-              </div>
-              <div>
-                <div className="space-y-1">
                   <label className="block text-sm font-medium text-gray-700">Theme</label>
                   <div className="relative">
                     <select 
@@ -409,84 +394,33 @@ const Dashboard = () => {
                   {filteredStatements.map((statement) => (
                     <div 
                       key={statement['ps-id'] || statement.id} 
-                      className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden transition-all duration-300 w-full md:w-72 flex flex-col"
-                      style={{ height: '420px' }}
+                      className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden transition-all duration-300 w-full md:w-72 flex flex-col hover:shadow-md"
+                      style={{ height: '320px' }}
                     >
-                      <div className="p-2 flex-1 flex flex-col">
-                        <div className="flex justify-between items-start">
+                      <div className="p-4 flex-1 flex flex-col">
+                        <div className="flex justify-between items-start mb-3">
                           <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-blue-50 text-blue-800">
                             {statement.ps_id || statement['ps-id'] || 'ID: N/A'}
                           </span>
-                          <div className="flex space-x-1">
-                            <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-50 text-green-800">
-                              Open
-                            </span>
-                            <button 
-                              onClick={() => handleViewDetails(statement)}
-                              className="inline-flex items-center p-1 text-gray-400 hover:text-gray-600"
-                              aria-label="View details"
-                            >
-                              <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                              </svg>
-                            </button>
-                          </div>
+                          <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-50 text-green-800 max-w-[100px] truncate" title={statement.category || 'Category'}>
+                            {statement.category || 'Category'}
+                          </span>
                         </div>
-                        <h3 className="text-sm font-semibold text-gray-900 mt-1 line-clamp-2 min-h-[2.5rem]">
+                        
+                        <h3 className="font-medium text-gray-900 line-clamp-2 mb-2">
                           {statement.title || 'Untitled Problem Statement'}
                         </h3>
-                        <div className="mt-2 text-sm text-gray-600 mb-3 line-clamp-3">
-                          {statement.description && (
-                            <div className="mb-3">
-                              <h4 className="font-medium text-gray-800 mb-1">Description:</h4>
-                              <p className="whitespace-pre-line">{statement.description}</p>
-                            </div>
-                          )}
-                          {statement.solution && (
-                            <div className="mb-3">
-                              <h4 className="font-medium text-gray-800 mb-1">Proposed Solution:</h4>
-                              <p className="whitespace-pre-line">{statement.solution}</p>
-                            </div>
-                          )}
-                          {statement.impact && (
-                            <div className="mb-3">
-                              <h4 className="font-medium text-gray-800 mb-1">Expected Impact:</h4>
-                              <p className="whitespace-pre-line">{statement.impact}</p>
-                            </div>
-                          )}
-                        </div>
-                        <div className="h-px bg-gray-100 my-1.5"></div>
-                        <div className="space-y-1 mt-1 text-xs text-gray-600 flex-grow">
-                          {statement.organization && (
-                            <div className="flex items-start">
-                              <svg className="h-4 w-4 text-gray-400 mr-1.5 flex-shrink-0 mt-0.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                                <path fillRule="evenodd" d="M4 4a2 2 0 012-2h8a2 2 0 012 2v12a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm3 1a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" clipRule="evenodd" />
-                              </svg>
-                              <span>{statement.organization}</span>
-                            </div>
-                          )}
-                          {statement.department && (
-                            <div className="flex items-start">
-                              <svg className="h-4 w-4 text-gray-400 mr-1.5 flex-shrink-0 mt-0.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                                <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
-                              </svg>
-                              <span>{statement.department}</span>
-                            </div>
-                          )}
-                          {statement.category && (
-                            <div className="flex items-start">
-                              <svg className="h-4 w-4 text-gray-400 mr-1.5 flex-shrink-0 mt-0.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                                <path fillRule="evenodd" d="M17.707 9.293a1 1 0 010 1.414l-7 7a1 1 0 01-1.414 0l-7-7A.997.997 0 012 10V5a3 3 0 013-3h5c.256 0 .512.098.707.293l7 7zM5 6a1 1 0 100-2 1 1 0 000 2z" clipRule="evenodd" />
-                              </svg>
-                              <span>{statement.category}</span>
-                            </div>
-                          )}
+                        <p className="text-sm text-gray-500 line-clamp-3 mb-3">
+                          {statement.description || (statement.background ? statement.background.substring(0, 150) + (statement.background.length > 150 ? '...' : '') : 'No description available')}
+                        </p>
+                        
+                        <div className="mt-4 space-y-2 text-sm">
                           {statement.theme && (
-                            <div className="flex items-start">
-                              <svg className="h-4 w-4 text-gray-400 mr-1.5 flex-shrink-0 mt-0.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+  <div className="flex items-center">
+                              <svg className="h-4 w-4 text-gray-400 mr-1.5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
                                 <path fillRule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10a1 1 0 01-1.64 0l-7-10A1 1 0 012 7h5.5l1.8-5.954a1 1 0 011.8 0z" clipRule="evenodd" />
                               </svg>
-                              <span>{statement.theme}</span>
+                              <span className="text-gray-600">{statement.theme}</span>
                             </div>
                           )}
                         </div>
