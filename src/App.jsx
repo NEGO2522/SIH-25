@@ -8,6 +8,7 @@ import Schedule from './Pages/Schedule';
 import Faqs from './Pages/Faqs';
 import Template from './Pages/Template';
 import Dashboard from './Pages/Dashboard';
+import YouTube from './Pages/Youtube';
 import './App.css';
 
 function App() {
@@ -35,9 +36,8 @@ function App() {
   }
 
   return (
-    <Router>
-      <div className="App">
-        <Routes>
+    <div className="App">
+      <Routes>
           <Route 
             path="/" 
             element={<Landing user={user} />} 
@@ -66,9 +66,12 @@ function App() {
             path="*" 
             element={<Navigate to="/" replace />} 
           />
+          <Route 
+            path="/youtube" 
+            element={<YouTube />} 
+          />
         </Routes>
       </div>
-    </Router>
   );
 }
 
