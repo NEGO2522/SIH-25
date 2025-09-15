@@ -55,7 +55,7 @@ const videoData = [
     views: "1.2M"
   },
   {
-    id: 2,
+    id: 3,
     title: "How to Win at SIH: Pro Tips",
     description: "Learn winning strategies and tips from past SIH champions",
     videoId: "_S97ArKlWYQ",
@@ -64,7 +64,7 @@ const videoData = [
     views: "856K"
   },
   {
-    id: 3,
+    id: 4,
     title: "SIH Project Showcase 2023",
     description: "Top innovative projects from SIH 2023 finalists",
     videoId: "nd4bBknAltk",
@@ -73,7 +73,7 @@ const videoData = [
     views: "2.1M"
   },
   {
-    id: 4,
+    id: 5,
     title: "Mentor's Guide to SIH Success",
     description: "Expert advice from SIH mentors on how to excel in the competition",
     videoId: "9SXmhCaXkzI",
@@ -82,22 +82,13 @@ const videoData = [
     views: "543K"
   },
   {
-    id: 5,
+    id: 6,
     title: "SIH Problem Statements Deep Dive",
     description: "Detailed analysis of SIH 2025 problem statements",
     videoId: "dNe-3Uk4o_c",
     duration: "22:15",
     date: "2023-08-25",
     views: "1.5M"
-  },
-  {
-    id: 6,
-    title: "SIH 2024: Behind the Scenes",
-    description: "Exclusive behind-the-scenes look at the making of SIH 2024",
-    videoId: "33BR5Vhcfcc",
-    duration: "2:30",
-    date: "2024-01-15",
-    views: "2.4M"
   }
 ];
 
