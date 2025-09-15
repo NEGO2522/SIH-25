@@ -1,0 +1,62 @@
+FAQ's add 
+General FAQ
+Q. 1. What is the Smart India Hackathon?
+Smart India Hackathon is an initiative by the Government of India aimed at addressing pressing problems faced by government departments and private organizations through innovative solutions developed by students.
+
+Q. 2. When did the Smart India Hackathon start?
+Smart India Hackathon started in 2017 with only a software chapter. In 2018 the hardware chapter was introduced. Four successful editions have been completed namely SIH2017, SIH 2018, SIH 2019, SIH 2022, SIH 2023 and SIH2024. Due to COVID-19 SIH2020 was cancelled. Now Smart India Hackathon is at its 8th edition
+
+Q. 3. Who can submit problem statements in this hackathon?
+Problem statements can be submitted by different central government ministries, departments, state government ministries/ departments, PSUs, private bodies & NGOs.
+
+Q. 4. Can an individual in India, such as someone working in a private company, pose a challenge or submit a problem statement? What are the financial implications?
+No individual is allowed to pose challenges otherwise. However, if an individual is registered as a proprietor firm then he may submit problem statements in the name of his firm; What are the financial implications? An amount of Rs 2.50 Lakh for Software and Rs. 3.55 Lakh for Hardware per problem statement shall be given by the organisation posing the challenges. In addition to this amount, registration fee of Rs 25000 /- per company is applicable. Registration fee is only applicable for private companies, PSU, MSME, NGO etc. There is no registration fee for government departments/ministries/attached offices of ministries.
+
+Q. 5. Can University or Institute Submit PS Under SIH 2025 ?
+No, University/institutes cannot submit PS under SIH 2025. However, they can nominate students from their institute to participate in this hackathon or nominate themselves as nodal centers to organize and support in this hackathon.
+
+Q. 6. Can a student from distance/part time Education Program Participate in SIH 2025?
+If an individual is a registered as a proprietor firm then he may submit problem statements in the name of his firm; No individual is allowed to pose challenges otherwise.
+
+
+FAQ for Teams
+Q. 1. Who can Participate in SIH 2025?
+Higher Education Institutes (HEI) may be allowed to nominate 45+05 teams/colleges (qualified through an internal hackathon conducted by the institute at their premise). Teams shortlisted by HEIs will participate in SIH 2025.
+
+Q. 2. What is the criteria of Team Formation?
+All participants must be from the same college; inter-college/school teams are not permitted.
+ Members from different branches or disciplines within the same institution may form a team.
+ Each team must consist of 6 members, including the team leader, and must include at least one female member.
+ For the Hardware edition, multi-disciplinary teams are encouraged, allowing for a mix of Mechanical Engineers, Electronic Engineers, Product Designers, Programmers, etc.
+ For the Software edition, which focuses on digital product development, it is mandatory that the majority of team members possess strong programming skills.
+
+Q. 3. What is the role of the College Single Point of Contact (SPOC)?
+The College SPOC has the following roles:
+  The College SPOC must log in to sih.gov.in with their credentials and enter details for teams.
+  Under the new system, each team can submit only two ideas.
+
+Q. 4. I am a student of Higher Education Institutes(HEIs) pursuing PhD. Can I participate?
+Yes, but the participant must qualify HEI’s Internal Hackathon. HEIs may be allowed to nominate 50 teams/colleges (qualified through an internal hackathon conducted by the institute at their premise). Teams shortlisted by HEIs will participate in the National Level Flagship Program; SIH 2025.
+
+Q. 5. I am pursuing distance/part-time and currently engaged as a working professional. Can I participate?
+No, the students should be pursuing and enrolled in a regular course.
+
+Q. 6. What is the prize money of the winning team?
+The Prize money for both categories ( Hardware/Software) is INR 1.5 Lakh.
+
+Q. 7. When can I submit the idea against the problem statement?
+Students can submit their ideas only after SPOC registration and nomination by institutes after Internal hackathon. Ideally, SPOC is responsible to conduct internal hackathon and nominate the top teams through idea submission on SIH portal.
+
+Q. 8. Will this hackathon be organised digitally or in-person mode?
+First stage i.e. idea screening is online. SIH Grand Finale would be conducted in an offline mode.
+
+Q. 9. What about mentors or how many mentors can be nominated And what is the minimum requirement for a mentor to mentor a team in a hackathon?
+The Participating Team can nominate one mentor who can be any senior faculty and domain expert that will guide the team and nurture their idea.
+
+Q. 10. The internal hackathon needs to be organised on which date & what will be the process for organising internal hackathon?
+Internal hackathon is responsibility of the institute and institute SPOC. Internal hackathon can be conducted any time after launch of problem statement which was done on 25th Aug, 2025 and problem statements are live now. It’s recommended to conduct internal hackathons as early as possible so that shortlisted ideas can be nominated for idea submission on SIH portal.
+
+Q. 11. Is it mandatory for colleges/institutes to organise Intra college hackathon?
+Yes, it is mandatory for all the participating colleges/institutes to organise intra college hackathons.
+Also, it is mandatory for all the participating colleges/institutions to provide the report on internal hackathon to the organizers in the desired format. Please refer to the guidelines as provided on the official website.
+https://www.sih.gov.in/letters/Guidelines-College-SPOC.pdf

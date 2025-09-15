@@ -5,6 +5,7 @@ import { auth } from './Firebase/firebase';
 import Landing from './Pages/Landing';
 import Login from './components/Login';
 import Schedule from './Pages/Schedule';
+import Faqs from './Pages/Faqs';
 import './App.css';
 
 function App() {
@@ -45,7 +46,11 @@ function App() {
           />
           <Route 
             path="/schedule" 
-            element={user ? <Schedule /> : <Schedule />} 
+            element={user ? <Schedule /> : <Faqs />} 
+          />
+          <Route 
+            path="/faq" 
+            element={<Faqs />} 
           />
         </Routes>
       </div>

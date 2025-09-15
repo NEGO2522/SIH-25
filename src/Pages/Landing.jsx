@@ -46,16 +46,28 @@ import { useNavigate } from 'react-router-dom';
 const Landing = ({ user }) => {
   const navigate = useNavigate();
 
-  const handleScheduleClick = () => {
+  const handleProtectedNavigation = (path) => {
     if (user) {
-      navigate('/schedule');
+      navigate(path);
     } else {
-      // Option 1: Redirect to login first
-      // navigate('/login', { state: { from: '/schedule' } });
-      
-      // Option 2: Show the schedule but with a login prompt
-      navigate('/schedule');
+      navigate('/login', { state: { from: path } });
     }
+  };
+
+  const handleScheduleClick = () => {
+    handleProtectedNavigation('/schedule');
+  };
+
+  const handleProblemStatementsClick = () => {
+    handleProtectedNavigation('/problem-statements');
+  };
+
+  const handlePrizesClick = () => {
+    handleProtectedNavigation('/prizes');
+  };
+
+  const handleFaqClick = () => {
+    handleProtectedNavigation('/faq');
   };
 
   // Parallax effect for background elements
@@ -152,13 +164,15 @@ const Landing = ({ user }) => {
                   icon: '📋', 
                   title: 'Problem Statements', 
                   desc: 'Browse through various problem statements from different sectors',
-                  color: 'from-indigo-500 to-blue-500'
+                  color: 'from-indigo-500 to-blue-500',
+                  onClick: handleProblemStatementsClick
                 },
                 { 
                   icon: '🏆', 
                   title: 'Prizes & Rewards', 
                   desc: 'Win exciting prizes, internships, and recognition',
-                  color: 'from-amber-500 to-orange-500'
+                  color: 'from-amber-500 to-orange-500',
+                  onClick: handlePrizesClick
                 },
                 { 
                   icon: '📅', 
@@ -171,7 +185,8 @@ const Landing = ({ user }) => {
                   icon: '❓', 
                   title: 'FAQs', 
                   desc: 'Find answers to common questions',
-                  color: 'from-purple-500 to-pink-500'
+                  color: 'from-purple-500 to-pink-500',
+                  onClick: handleFaqClick
                 }
               ].map((item, index) => (
                 <motion.div 
@@ -197,12 +212,12 @@ const Landing = ({ user }) => {
       
       {/* Footer */}
       <motion.footer 
-        className="mt-auto py-6 text-center text-gray-400 text-sm w-full bg-gray-900/50 backdrop-blur-sm"
+        className="mt-auto py-6 text-center text-gray-400 text-sm w-full bg-gray-900/50-sm"
         variants={itemVariants}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <p>Organized by Poornima University in association with Smart India Hackathon</p>
-          <p>© {new Date().getFullYear()} SIH2025 - All rights reserved</p>
+          <p> {new Date().getFullYear()} SIH2025 - All rights reserved</p>
         </div>
       </motion.footer>
     </div>
