@@ -6,6 +6,8 @@ import Landing from './Pages/Landing';
 import Login from './components/Login';
 import Schedule from './Pages/Schedule';
 import Faqs from './Pages/Faqs';
+import Template from './Pages/Template';
+// import Dashboard from './Pages/Dashboard';
 import './App.css';
 
 function App() {
@@ -46,11 +48,23 @@ function App() {
           />
           <Route 
             path="/schedule" 
-            element={user ? <Schedule /> : <Faqs />} 
+            element={user ? <Schedule /> : <Navigate to="/login" />} 
           />
           <Route 
-            path="/faq" 
+            path="/faqs" 
             element={<Faqs />} 
+          />
+          <Route 
+            path="/dashboard" 
+            // element={user ? <Dashboard /> : <Navigate to="/login" />} 
+          />
+          <Route 
+            path="/template" 
+            element={<Template />} 
+          />
+          <Route 
+            path="*" 
+            element={<Navigate to="/" replace />} 
           />
         </Routes>
       </div>

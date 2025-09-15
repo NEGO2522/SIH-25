@@ -67,7 +67,7 @@ const Landing = ({ user }) => {
   };
 
   const handleFaqClick = () => {
-    handleProtectedNavigation('/faq');
+    handleProtectedNavigation('/faqs');
   };
 
   // Parallax effect for background elements
@@ -168,11 +168,11 @@ const Landing = ({ user }) => {
                   onClick: handleProblemStatementsClick
                 },
                 { 
-                  icon: '🏆', 
-                  title: 'Prizes & Rewards', 
-                  desc: 'Win exciting prizes, internships, and recognition',
+                  icon: '📊', 
+                  title: 'SIH PPT Template', 
+                  desc: 'Download the official SIH presentation template',
                   color: 'from-amber-500 to-orange-500',
-                  onClick: handlePrizesClick
+                  onClick: () => handleProtectedNavigation('/template')
                 },
                 { 
                   icon: '📅', 
