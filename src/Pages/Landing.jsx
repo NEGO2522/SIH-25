@@ -210,9 +210,27 @@ const Landing = ({ user }) => {
         </motion.div>
       </div>
       
+      {/* Learn More Button */}
+      <motion.div 
+        className="w-full flex justify-center py-8 bg-gradient-to-b from-transparent to-gray-900/50"
+        variants={itemVariants}
+      >
+        <a
+          href="https://www.youtube.com/watch?v=YOUR_VIDEO_ID"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-800 text-white font-medium rounded-full shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300"
+        >
+          <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M21.58 7.19c-.23-.86-.91-1.54-1.77-1.77C18.25 5 12 5 12 5s-6.25 0-7.81.42c-.86.23-1.54.91-1.77 1.77C2 8.75 2 12 2 12s0 3.25.42 4.81c.23.86.91 1.54 1.77 1.77C5.75 19 12 19 12 19s6.25 0 7.81-.42c.86-.23 1.54-.91 1.77-1.77C22 15.25 22 12 22 12s0-3.25-.42-4.81zM10 15V9l5.2 3-5.2 3z"/>
+          </svg>
+          Watch: SIH Guide & Pitching Tips
+        </a>
+      </motion.div>
+
       {/* Footer */}
       <motion.footer 
-        className="mt-auto py-6 text-center text-gray-400 text-sm w-full bg-gray-900/50-sm"
+        className="mt-auto py-8 text-center text-gray-400 text-sm w-full bg-gray-900/50"
         variants={itemVariants}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
