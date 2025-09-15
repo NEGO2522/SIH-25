@@ -239,7 +239,7 @@ const Landing = ({ user }) => {
     </div>
 
     {/* Custom animations */}
-    <style jsx={"true"} global={"true"}>{`
+    <style jsx global>{`
         html, body, #root {
           height: 100%;
           overflow: hidden;

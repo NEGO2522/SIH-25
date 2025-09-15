@@ -48,13 +48,13 @@ const Schedule = () => {
 
         <div className="bg-white/5 backdrop-blur-md rounded-xl sm:rounded-2xl p-3 sm:p-4 md:p-6 shadow-2xl">
           <div className="relative pb-[56.25%] h-0 overflow-hidden rounded-lg sm:rounded-xl">
-            <img 
-              src="src/assets/SIH-2025.png" 
+            <img
+              src="/images/SIH-2025.png" 
               alt="SIH 2025 Timeline" 
               className="absolute top-0 left-0 w-full h-full object-contain p-2 sm:p-4"
               onError={(e) => {
                 e.target.onerror = null;
-                e.target.src = 'https://via.placeholder.com/1200x675?text=SIH+2025+Timeline';
+                e.target.src = 'https://placehold.co/1200x675/0a2342/ffffff?text=SIH+2025+Timeline';
               }}
             />
           </div>

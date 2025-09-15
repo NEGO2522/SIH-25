@@ -182,7 +182,7 @@ const Login = () => {
         <p>© {new Date().getFullYear()} SIH2025 - All rights reserved</p>
       </footer>
 
-      <style jsx={"true"} global={"true"}>{`
+      <style jsx global>{`
         @keyframes blob {
           0%, 100% { transform: translateY(0) translateX(0); }
           50% { transform: translateY(-20px) translateX(10px); }

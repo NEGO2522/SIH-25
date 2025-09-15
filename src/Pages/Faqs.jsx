@@ -13,7 +13,7 @@ const Faqs = () => {
   useEffect(() => {
     const fetchFaqs = async () => {
       try {
-        const response = await fetch('/src/Data/Faq\'s.txt');
+        const response = await fetch('/Data/Faqs.txt');
         if (!response.ok) {
           throw new Error('Failed to load FAQs');
         }
