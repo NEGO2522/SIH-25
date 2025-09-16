@@ -1,5 +1,6 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
+import { useMediaQuery } from 'react-responsive';
 
 // SIH Color Scheme
 const colors = {
@@ -43,9 +44,210 @@ const buttonTap = { scale: 0.98 };
 
 import { useNavigate } from 'react-router-dom';
 
-const Landing = ({ user }) => {
-  const navigate = useNavigate();
+const MobileMessage = () => {
+  const [currentEmoji, setCurrentEmoji] = React.useState('💻');
+  const emojis = ['💻', '🚀']; // Only laptop and SIH rocket emoji
+  
+  React.useEffect(() => {
+    let index = 0;
+    const interval = setInterval(() => {
+      index = (index + 1) % emojis.length;
+      setCurrentEmoji(emojis[index]);
+    }, 1500);
+    return () => clearInterval(interval);
+  }, []);
 
+  return (
+    <div style={{
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center',
+      minHeight: '100vh',
+      padding: '24px',
+      textAlign: 'center',
+      background: 'linear-gradient(160deg, #0A2342 0%, #0D2B4E 50%, #1A3C6A 100%)',
+      color: '#FFFFFF',
+      fontFamily: '"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+      lineHeight: '1.6'
+    }}>
+      <motion.div 
+        initial={{ y: 20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+        style={{
+          background: 'rgba(255, 255, 255, 0.08)',
+          borderRadius: '24px',
+          padding: '40px 24px',
+          backdropFilter: 'blur(16px)',
+          border: '1px solid rgba(255, 255, 255, 0.08)',
+          maxWidth: '420px',
+          width: '100%',
+          boxShadow: '0 20px 40px rgba(0, 0, 0, 0.2)',
+          position: 'relative',
+          overflow: 'hidden'
+        }}
+      >
+        {/* Decorative elements */}
+        <div style={{
+          position: 'absolute',
+          top: '-50px',
+          right: '-50px',
+          width: '200px',
+          height: '200px',
+          borderRadius: '50%',
+          background: 'radial-gradient(circle, rgba(0, 168, 224, 0.15) 0%, rgba(0, 168, 224, 0) 70%)',
+          pointerEvents: 'none'
+        }} />
+        
+        <motion.div
+          style={{
+            fontSize: '3.5rem',
+            marginBottom: '20px',
+            lineHeight: '1',
+            display: 'inline-block',
+            transformOrigin: 'center',
+          }}
+          animate={{ 
+            scale: [1, 1.1, 1],
+            rotate: [0, 10, -5, 0]
+          }}
+          transition={{ 
+            duration: 2,
+            ease: 'easeInOut',
+            repeat: Infinity,
+            repeatType: 'reverse'
+          }}
+        >
+          {currentEmoji}
+        </motion.div>
+        
+        <motion.h1 
+          style={{ 
+            color: '#FFFFFF',
+            margin: '0 0 16px 0',
+            fontSize: '1.8rem',
+            fontWeight: '700',
+            lineHeight: '1.3',
+            background: 'linear-gradient(90deg, #FFFFFF, #A5D8FF)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            letterSpacing: '-0.5px'
+          }}
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.1, duration: 0.5 }}
+        >
+          Desktop Experience Required
+        </motion.h1>
+        
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2, duration: 0.5 }}
+          style={{
+            marginBottom: '24px',
+            color: 'rgba(255, 255, 255, 0.85)',
+            fontSize: '1.05rem',
+            lineHeight: '1.7'
+          }}
+        >
+          <p style={{ margin: '0 0 16px 0' }}>
+            For the best experience, please access this platform from a desktop or laptop computer.
+          </p>
+          <p style={{ 
+            margin: 0,
+            fontWeight: '500',
+            color: 'rgba(255, 255, 255, 0.95)'
+          }}>
+            The Smart India Hackathon platform is optimized for larger screens to provide you with the best possible experience.
+          </p>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3, duration: 0.5 }}
+          style={{
+            background: 'rgba(255, 255, 255, 0.05)',
+            borderRadius: '16px',
+            padding: '16px',
+            borderLeft: `3px solid ${colors.accent}`,
+            textAlign: 'left',
+            margin: '32px 0 0 0'
+          }}
+        >
+          <div style={{
+            display: 'flex',
+            alignItems: 'flex-start',
+            gap: '12px'
+          }}>
+            <div style={{
+              background: 'rgba(0, 168, 224, 0.15)',
+              borderRadius: '8px',
+              width: '36px',
+              height: '36px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              flexShrink: 0,
+              color: colors.accent,
+              fontSize: '1.1rem'
+            }}>
+              ℹ️
+            </div>
+            <div>
+              <p style={{
+                margin: '0 0 4px 0',
+                fontWeight: '600',
+                color: '#FFFFFF',
+                fontSize: '0.95rem'
+              }}>
+                Why desktop?
+              </p>
+              <p style={{
+                margin: 0,
+                color: 'rgba(255, 255, 255, 0.75)',
+                fontSize: '0.9rem',
+                lineHeight: '1.6'
+              }}>
+                The platform includes advanced features and tools that work best on larger screens, ensuring you have everything you need to succeed in the competition.
+              </p>
+            </div>
+          </div>
+        </motion.div>
+      </motion.div>
+    </div>
+  );
+};
+
+const DesktopLanding = ({ user, navigate }) => {
+  // All hooks must be called unconditionally at the top level
+  const [isClient, setIsClient] = React.useState(false);
+  const [isMounted, setIsMounted] = React.useState(false);
+  
+  // Single effect to handle both client detection and mount state
+  React.useEffect(() => {
+    setIsClient(true);
+    setIsMounted(true);
+    
+    const handleMouseMove = (e) => {
+      const { clientX, clientY } = e;
+      const x = (window.innerWidth / 2 - clientX) / 40;
+      const y = (window.innerHeight / 2 - clientY) / 40;
+      document.documentElement.style.setProperty('--mouse-x', `${x}px`);
+      document.documentElement.style.setProperty('--mouse-y', `${y}px`);
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
+  
+  // Don't render anything until we're on the client side
+  if (!isClient) {
+    return null;
+  }
+  
   const handleProtectedNavigation = (path) => {
     if (user) {
       navigate(path);
@@ -70,22 +272,9 @@ const Landing = ({ user }) => {
     handleProtectedNavigation('/faqs');
   };
 
-  // Parallax effect for background elements
-  useEffect(() => {
-    const handleMouseMove = (e) => {
-      const { clientX, clientY } = e;
-      const x = (window.innerWidth / 2 - clientX) / 40;
-      const y = (window.innerHeight / 2 - clientY) / 40;
-      document.documentElement.style.setProperty('--mouse-x', `${x}px`);
-      document.documentElement.style.setProperty('--mouse-y', `${y}px`);
-    };
-
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
 
   return (
-    <div className="min-h-screen w-full bg-gray-900 overflow-x-hidden flex flex-col">
+    <div className={`min-h-screen w-full bg-gray-900 overflow-x-hidden flex flex-col ${isMounted ? 'opacity-100' : 'opacity-0'}`} style={{ transition: 'opacity 300ms ease-in-out' }}>
       {/* Animated Background */}
       <div className="fixed inset-0 overflow-hidden">
         {[...Array(20)].map((_, i) => (
@@ -283,6 +472,17 @@ const Landing = ({ user }) => {
       </style>
     </div>
   );
+};
+
+const Landing = ({ user }) => {
+  const isMobile = useMediaQuery({ maxWidth: 768 });
+  const navigate = useNavigate();
+  
+  if (isMobile) {
+    return <MobileMessage />;
+  }
+  
+  return <DesktopLanding user={user} navigate={navigate} />;
 };
 
 export default Landing;
